@@ -1,0 +1,20 @@
+<component name="libraryTable">
+  <library name="apache-tomcat-8.0">
+    <CLASSES>
+      <root url="file://$PROJECT_DIR$/../../tomcat/apache-tomcat-8.0.30" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="file://$PROJECT_DIR$/../../tomcat/apache-tomcat-8.0.30/webapps/docs/appdev/sample/src" />
+      <root url="file://$PROJECT_DIR$/../../tomcat/apache-tomcat-8.0.30/webapps/examples/WEB-INF/classes" />
+      <root url="file://$PROJECT_DIR$/../../tomcat/apache-tomcat-8.0.30/webapps/examples/WEB-INF/jsp/applet" />
+      <root url="file://$PROJECT_DIR$/../../tomcat/apache-tomcat-8.0.30/webapps/examples/jsp/plugin/applet" />
+      <root url="file://$PROJECT_DIR$/../../tomcat/apache-tomcat-8.0.30/work/Catalina/localhost/Oraclelink" />
+      <root url="file://$PROJECT_DIR$/../../tomcat/apache-tomcat-8.0.30/work/Catalina/localhost/ROOT" />
+      <root url="file://$PROJECT_DIR$/../../tomcat/apache-tomcat-8.0.30/work/Catalina/localhost/first1" />
+      <root url="file://$PROJECT_DIR$/../../tomcat/apache-tomcat-8.0.30/work/Catalina/localhost/host-manager" />
+      <root url="file://$PROJECT_DIR$/../../tomcat/apache-tomcat-8.0.30/work/Catalina/localhost/kkkkk" />
+      <root url="file://$PROJECT_DIR$/../../tomcat/apache-tomcat-8.0.30/work/Catalina/localhost/manager" />
+    </SOURCES>
+  </library>
+</component>
