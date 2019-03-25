@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>注册</title>
+</head>
+<body>
+  <form method="get" action="reg">
+      <!--name的value值：自定义的-->
+      用户名：<input type="text" name="username">
+      <br>
+      密码：<input type="password" name="password">
+      <br>
+      <!--单选按钮-->
+      <!--
+          name：用于向服务器传入value
+          value:真正要传入的值
+      -->
+      性别:<input  type="radio"  name="sex" value="1">女
+      <input  type="radio"  name="sex" value="0">男
+       <br>
+      爱好：<input type="checkbox" name="honny" value="游戏">游戏
+      <input type="checkbox" name="honny" value="睡觉">睡觉
+      <input type="checkbox" name="honny" value="吃">吃
+      <input type="checkbox" name="honny" value="喝">喝
+      <input type="checkbox" name="honny" value="学习">学习
+      <input type="checkbox" name="honny" value="打高尔夫">打高尔夫
+      <br>
+      <!-- select中，option中value的值请求到servlet中-->
+      生日：<select name="byear">
+         <option value="1994">1994</option>
+      <option value="1995">1995</option>
+      <option value="1996">1996</option>
+      <option value="1997">1997</option>
+      <option value="1998">1998</option>
+      <option value="1999">1999</option>
+  </select>
+
+      <br>
+      课程：<select name="bclass" multiple="multiple" size="3">
+      <option value="java">java</option>
+      <option value="html">html</option>
+      <option value="css">css</option>
+      <option value="mysql">mysql</option>
+      <option value="javascript">javascript</option>
+      <option value="ssm">ssm</option>
+  </select>
+      <br>
+      备注：<textarea name="bz">
+
+           </textarea>
+      <br>
+      隐藏字段：
+      <input type="hidden" name="hiddenname" value="hiddenvalue">
+      <br>
+      <input type="submit" value="提交">
+  </form>
+</body>
+</html>
