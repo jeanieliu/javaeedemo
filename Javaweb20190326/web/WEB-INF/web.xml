@@ -17,6 +17,11 @@
     <servlet>
         <servlet-name>myServlet</servlet-name>
         <servlet-class>com.neuedu.servlet.MyServlet</servlet-class>
+
+        <init-param>
+            <param-name>age</param-name>
+            <param-value>12</param-value>
+        </init-param>
         <load-on-startup>1</load-on-startup>
     </servlet>
     <!--
@@ -37,5 +42,15 @@
         <servlet-name>myServlet</servlet-name>
         <url-pattern>/myservlet01</url-pattern>
     </servlet-mapping>
+
+    <!--
+         xml:设置全局的参数
+         存放在：ServletContext对象中
+    -->
+
+    <context-param>
+        <param-name>charset</param-name>
+        <param-value>utf-8</param-value>
+    </context-param>
 
 </web-app>
