@@ -3,4 +3,39 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
          version="3.1">
+    <!--
+       servler实现映射（外部能够访问servlet）
+        两种配置方式：1：xml
+                       1)servlet声明
+                       2）映射
+                     2:注解
+    -->
+    <!--1)servlet声明
+      servlet-name:自定义
+      servlet-class：全限定路径：包.类
+    -->
+    <servlet>
+        <servlet-name>myServlet</servlet-name>
+        <servlet-class>com.neuedu.servlet.MyServlet</servlet-class>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+    <!--
+        2）映射
+        servlet-name:设置时注意与声明的servlet-name保持一致
+        url-pattern:映射的路径
+                   1）/myservlet   映射的名 保持一致
+                   2）/user/myservlet  映射的路径和最终名
+                   3）/user/*  路径匹配，但是名随意的
+                   4）*.do （常用） *.user  扩展名匹配 ：扩展名自定义
+    -->
+    <servlet-mapping>
+        <servlet-name>myServlet</servlet-name>
+        <url-pattern>*.user</url-pattern>
+
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>myServlet</servlet-name>
+        <url-pattern>/myservlet01</url-pattern>
+    </servlet-mapping>
+
 </web-app>
