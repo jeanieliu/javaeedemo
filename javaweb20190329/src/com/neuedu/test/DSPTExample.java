@@ -71,5 +71,10 @@ public class DSPTExample {
      *           4：提交修改
      *           5：返回到list.user界面
      *
+     *
+     *    从登录页面进行登录，只要登录之后才能访问其他页面
+     *    session.getAttribute("user")
+     *     ==null 未登录：只能在登录页面
+     *     !=null 登录:登录到相对应的页面
      */
 }

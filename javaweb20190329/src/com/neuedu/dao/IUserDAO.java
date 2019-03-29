@@ -6,6 +6,15 @@ import java.util.List;
 
 public interface IUserDAO {
     /**
+     * 根据用户名和密码进行查询，
+     * 结果：1：有这条记录
+     *       2：没有
+     * @param username
+     * @param password
+     * @return
+     */
+    User selectByNamePassword(String username,String password);
+    /**
      * 提取user表中所有数据
      * @return
      */

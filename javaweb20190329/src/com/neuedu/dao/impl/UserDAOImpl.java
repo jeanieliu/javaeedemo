@@ -11,6 +11,28 @@ import java.util.List;
 
 public class UserDAOImpl implements IUserDAO {
     @Override
+    public User selectByNamePassword(String username, String password) {
+        String sql="select * from t_user where uname=? and upwd=?";
+        List<User> lists= QueryUpdate.query(sql, new ResultSetObject<User>() {
+            @Override
+            public User getResultSetOne(ResultSet resultSet) throws SQLException {
+                User user=new User();
+                user.setUid(resultSet.getInt("uid"));
+                user.setUname(resultSet.getString("uname"));
+                user.setPassword(resultSet.getString("upwd"));
+                user.setTelephone(resultSet.getString("telephone"));
+                user.setAddress(resultSet.getString("address"));
+                user.setUlevel(resultSet.getInt("ulevel"));
+                return user;
+            }
+        },username,password);
+        if(lists==null){
+            return null;
+        }
+        return lists.get(0);
+    }
+
+    @Override
     public List<User> selectAll() {
         String sql="select * from t_user";
         List<User> lists= QueryUpdate.query(sql, new ResultSetObject<User>() {

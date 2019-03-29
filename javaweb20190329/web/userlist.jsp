@@ -12,6 +12,18 @@
     <title>显示用户信息</title>
 </head>
 <body>
+<div>
+    <% User user=((User)session.getAttribute("user"));
+        if(user==null){
+            out.print("未登录");
+        }else{
+            out.print(user.getUname());
+        }
+
+
+            %>
+
+</div>
    <a href="useradd.jsp"><input type="button" value="添加"></a>
      <table>
          <caption>显示用户信息</caption>

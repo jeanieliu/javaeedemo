@@ -12,6 +12,10 @@
     <title>修改用户</title>
 </head>
 <body>
+<div>
+    <%=((User)session.getAttribute("user")).getUname()%>
+
+</div>
 <%
   User user=(User) request.getAttribute("user");
 %>

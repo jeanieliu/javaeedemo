@@ -6,11 +6,16 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@page import="com.neuedu.entity.User" %>
 <html>
 <head>
     <title>添加用户</title>
 </head>
 <body>
+<div>
+    <%=((User)session.getAttribute("user")).getUname()%>
+
+</div>
  <form method="post" action="add.user">
     <table>
         <caption>添加用户</caption>

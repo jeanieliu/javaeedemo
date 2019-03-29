@@ -9,6 +9,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.List;
 
@@ -36,6 +37,8 @@ public class UserServlet extends HttpServlet {
             find(req,resp);
         }else if("update".equals(path)){
             update(req,resp);
+        }else if("login".equals(path)){
+            login(req,resp);
         }
 
 
@@ -45,14 +48,33 @@ public class UserServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         doGet(req,resp);
     }
+    public void login(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        //1：从页面请求过来的的数据
+        String username=req.getParameter("username");
+        String password=req.getParameter("password");
+        //2：查找有没有这个用户
+        User user=userDAO.selectByNamePassword(username,password);
+        HttpSession session=req.getSession();
+        if(user==null){//用户是否存在
+            resp.sendRedirect("login.jsp");
+        }else{
+            if(user.getUlevel()==0) {//是不是管理员
+                session.setAttribute("user",user);
+                resp.sendRedirect("list.user");
 
-    /**
-     * 收集网页中的数据，进行修改操作
-     * @param req
-     * @param resp
-     * @throws ServletException
-     * @throws IOException
-     */
+            }else{
+                resp.sendRedirect("login.jsp");
+            }
+        }
+
+    }
+        /**
+         * 收集网页中的数据，进行修改操作
+         * @param req
+         * @param resp
+         * @throws ServletException
+         * @throws IOException
+         */
     public void update(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         //1：收集网页中的数据
         String username=req.getParameter("username");
