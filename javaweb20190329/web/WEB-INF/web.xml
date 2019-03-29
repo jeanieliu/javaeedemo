@@ -7,4 +7,7 @@
         <param-name>charset</param-name>
         <param-value>utf-8</param-value>
     </context-param>
+    <welcome-file-list>
+        <welcome-file>login.jsp</welcome-file>
+    </welcome-file-list>
 </web-app>

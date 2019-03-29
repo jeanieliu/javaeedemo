@@ -46,6 +46,8 @@ public class LoginFilter implements Filter {
             }
 
 
+        }else {
+            filterChain.doFilter(servletRequest, servletResponse);
         }
 
 
