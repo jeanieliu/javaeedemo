@@ -30,6 +30,8 @@ public class UserServlet extends HttpServlet {
             list(req,resp);
         }else if("add".equals(path)){
             add(req,resp);
+        }else if("delete".equals(path)){
+            delete(req,resp);
         }
 
 
@@ -41,12 +43,35 @@ public class UserServlet extends HttpServlet {
     }
 
     /**
-     * 实现添加
+     * 根据id进行删除
      * @param req
      * @param resp
      * @throws ServletException
      * @throws IOException
      */
+    public void delete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        //1:从页面提取删除的id
+        String id=req.getParameter("id");
+          //2:删除
+        if(id!=null&&!"".equals(id)) {
+            int i = userDAO.delele(Integer.valueOf(id));
+            if(i!=-1){
+                resp.sendRedirect("list.user");
+            }else{
+                resp.sendRedirect("error.jsp");
+            }
+        }else{
+            resp.sendRedirect("error.jsp");
+        }
+
+    }
+        /**
+         * 实现添加
+         * @param req
+         * @param resp
+         * @throws ServletException
+         * @throws IOException
+         */
     public void add(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         /**
          * 1:提取页面中的所有表单元素的数据
