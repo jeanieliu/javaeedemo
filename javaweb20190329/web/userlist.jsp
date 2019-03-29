@@ -28,7 +28,7 @@
                 "<td >" +u.getUname()+"</td >"+
                 "<td >" +u.getTelephone()+"</td >"+
                 "<td >" + u.getAddress()+"</td >"+
-               "<td > <a href='delete.user?id="+u.getUid()+"'>删除</a> &nbsp;&nbsp;&nbsp;修改</td ></tr >");
+               "<td > <a href='delete.user?id="+u.getUid()+"'>删除</a> &nbsp;&nbsp;&nbsp;<a href='find.user?id="+u.getUid()+"'>修改</a></td ></tr >");
              }
     %>
      </table>

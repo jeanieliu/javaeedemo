@@ -63,6 +63,13 @@ public class DSPTExample {
      *
      *     list 功能完成了
      *     add：
+     *     delete:
+     *
+     *     修改：1：找出这条记录的所有信息
+     *           2：显示这些信息
+     *           3：修改数据
+     *           4：提交修改
+     *           5：返回到list.user界面
      *
      */
 }
