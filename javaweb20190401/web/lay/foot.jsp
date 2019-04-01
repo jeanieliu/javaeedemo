@@ -12,6 +12,11 @@
     <link rel="stylesheet" type="text/css" href="css/lay.css">
 </head>
 <body>
+
+<%--<%
+
+    out.print(pageContext.getAttribute("page1"));
+%>--%>
 <div class="lay_foot">版权</div>
 </body>
 </html>

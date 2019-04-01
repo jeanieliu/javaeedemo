@@ -12,11 +12,30 @@
 </head>
 <body>
   <form action="login.user" method="post">
-      用户名:<input type="text" name="username">
+      用户名:<input type="text" name="username" value="">
       <br>
-      密码：<input type="password" name="password">
+      密码：<input type="password" name="password" value="">
+      <br>
+      <input type="checkbox" name="ifsave" value="1">记住用户名和密码
       <br>
       <input type="submit" value="登录">
+
   </form>
+<%--从cookie中取值--%>
+     <%
+        Cookie[] cookies=request.getCookies();
+        if(cookies!=null){
+            for(Cookie c:cookies){
+                if(c.getName().equals("name")){
+                    out.print(c.getValue());
+                }
+                if(c.getName().equals("password")){
+                    out.print(c.getValue());
+                }
+            }
+        }
+
+     %>
+
 </body>
 </html>

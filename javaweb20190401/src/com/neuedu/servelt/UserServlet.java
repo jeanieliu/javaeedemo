@@ -6,10 +6,7 @@ import com.neuedu.entity.User;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
+import javax.servlet.http.*;
 import java.io.IOException;
 import java.util.List;
 
@@ -52,6 +49,8 @@ public class UserServlet extends HttpServlet {
         //1：从页面请求过来的的数据
         String username=req.getParameter("username");
         String password=req.getParameter("password");
+        String ifsave=req.getParameter("ifsave");
+        System.out.println("ifsave:"+ifsave);
         //2：查找有没有这个用户
         User user=userDAO.selectByNamePassword(username,password);
         HttpSession session=req.getSession();
@@ -60,6 +59,22 @@ public class UserServlet extends HttpServlet {
         }else{
             if(user.getUlevel()==0) {//是不是管理员
                 session.setAttribute("user",user);
+                Cookie cname = new Cookie("name", user.getUname());
+                Cookie cpwd = new Cookie("password", user.getPassword());
+                if(ifsave!=null && "1".equals(ifsave)) {//设置cookie
+
+                    cname.setMaxAge(24 * 60 * 60);
+                    cpwd.setMaxAge(24 * 60 * 60);
+
+                    resp.addCookie(cname);
+                    resp.addCookie(cpwd);
+                }else{
+                    cname.setMaxAge(0);
+                    cpwd.setMaxAge(0);
+
+                    resp.addCookie(cname);
+                    resp.addCookie(cpwd);
+                }
                 resp.sendRedirect("list.user");
 
             }else{
