@@ -16,7 +16,7 @@
 <div class="lay_top">
     电商平台管理系统
     <div>
-        <% User user=((User)session.getAttribute("user"));
+        <%--<% User user=((User)session.getAttribute("user"));
             if(user==null){
                 out.print("未登录");
             }else{
@@ -24,7 +24,20 @@
             }
 
 
-        %>
+        %>--%>
+        <%--
+          选择控制：c:if
+             只有一个结果，为true进行处理
+
+             属性：test
+        --%>
+        <c:if test="${user==null}">
+            <c:out value="未登录"/>
+        </c:if>
+
+            <c:if test="${user!=null}">
+               <c:out value="${user}"/>
+            </c:if>
         </div>
     退出
 </div>
