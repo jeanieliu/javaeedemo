@@ -16,13 +16,13 @@
       <br>
       密码：<input type="password" name="password" value="">
       <br>
-      <input type="checkbox" name="ifsave" value="1">记住用户名和密码
+      <input type="checkbox" name="ifsave" value="1" >记住用户名和密码
       <br>
       <input type="submit" value="登录">
 
   </form>
 <%--从cookie中取值--%>
-     <%
+    <%-- <%
         Cookie[] cookies=request.getCookies();
         if(cookies!=null){
             for(Cookie c:cookies){
@@ -35,7 +35,27 @@
             }
         }
 
-     %>
+     %>--%>
+
+<script>
+    var cs=document.cookie;
+    // console.log(cs);
+    var strs=cs.split(";");
+    if(strs.length==2){
+        for(var i=0;i<strs.length;i++){
+            var s=strs[i];
+           /* console.log(s.substr(s.indexOf("=")+1))*/
+           var value=s.substr(s.indexOf("=")+1);
+           if(i==0){
+               document.getElementsByName("username")[0].value=value;
+           }else{
+               document.getElementsByName("password")[0].value=value;
+           }
+        }
+
+        document.getElementsByName("ifsave")[0].checked=true;
+    }
+</script>
 
 
 </body>

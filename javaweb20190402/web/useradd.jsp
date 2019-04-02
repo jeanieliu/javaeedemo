@@ -10,6 +10,7 @@
 <html>
 <head>
     <title>添加用户</title>
+    <script type="application/javascript" src="js/jquery-3.3.1.js"></script>
 </head>
 <body>
 <div class="laycontent">
@@ -24,7 +25,7 @@
                     <caption>添加用户</caption>
                     <tr>
                         <td>用户名</td>
-                        <td><input type="text" name="username"></td>
+                        <td><input type="text" name="username" onblur="checkName(this)"><span id="result"></span></td>
                     </tr>
                     <tr>
                         <td>密码</td>
@@ -40,7 +41,8 @@
                     </tr>
                     <tr>
                         <td colspan="2">
-                            <input type="submit" value="添加" onclick="return checkValue();">
+                            <%--onclick="return checkValue();"--%>
+                            <input type="submit" value="添加" >
 
                         </td>
                     </tr>
@@ -51,6 +53,56 @@
     </div>
     <%@include file="lay/foot.jsp"%>
 </div>
+
+<script>
+
+    /*
+    * 1:测试jquery调用是否成功
+    *  $(function () {
+        alert("测试")
+    })‘
+
+    $===>jquery
+    功能：javasript中的onload
+
+
+    */
+
+    function checkName(name){
+        //1:从页面中提取name的值
+        /*console.log(name)*/
+        var username=$(name).val();
+       /* console.log(username);*/
+
+        /**
+         * 将数据传入servlet进行处理，并接收servlet返回的数据
+         */
+
+        $.ajax({
+            url:"checkName.user",/*servlet的处理*/
+            data:{"uname":username},/*向服务器传入数据：数据格式json*/
+            dataType:"json",/*接收返回的类型*/
+            success:function (result) {/*通过回调函数处理返回的数据*/
+               /* console.log(result);*/
+               /*console.log(result.flag)*/
+               if(result.flag==true){
+                   $("#result").text("用户名可用")
+               }else{
+                   $("#result").text("用户名已用，重写输入新的用户名")
+               }
+            }
+        })
+
+
+
+    }
+
+
+</script>
+
+
+
+
 <%--
    1:不能为空
    2：密码的长度最少6字符

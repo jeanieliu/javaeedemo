@@ -36,6 +36,8 @@ public class UserServlet extends HttpServlet {
             update(req,resp);
         }else if("login".equals(path)){
             login(req,resp);
+        }else if("checkName".equals(path)){
+            checkName(req,resp);
         }
 
 
@@ -44,6 +46,23 @@ public class UserServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         doGet(req,resp);
+    }
+    public void checkName(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+       String uname=req.getParameter("uname");
+        System.out.println(uname);
+        List<User> lists=userDAO.selectAll();
+        boolean flag=true;//可以用，没有
+        //从已知的数据中进行判断
+        for(User u:lists){
+            if(uname.equals(u.getUname())){
+                flag=false;
+                break;
+            }
+        }
+        //{"name":value}
+        String jsonString="{\"flag\":"+flag+"}";
+        System.out.println(jsonString);
+        resp.getWriter().print(jsonString);/*通过resp将结果传入页面*/
     }
     public void login(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         //1：从页面请求过来的的数据
