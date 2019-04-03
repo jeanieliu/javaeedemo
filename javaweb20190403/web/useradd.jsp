@@ -81,7 +81,14 @@
         $.ajax({
             url:"checkName.user",/*servlet的处理*/
             data:{"uname":username},/*向服务器传入数据：数据格式json*/
-            dataType:"json",/*接收返回的类型*/
+            dataType:"json",/*接收返回的类型："xml": 返回 XML 文档，可用 jQuery 处理。
+"html": 返回纯文本 HTML 信息；包含的 script 标签会在插入 dom 时执行。
+"script": 返回纯文本 JavaScript 代码。不会自动缓存结果。除非设置了 "cache" 参数。注意：在远程请求时(不在同一个域下)，所有 POST 请求都将转为 GET 请求。（因为将使用 DOM 的 script标签来加载）
+"json": 返回 JSON 数据 。
+"jsonp": JSONP 格式。使用 JSONP 形式调用函数时，如 "myurl?callback=?" jQuery 将自动替换 ? 为正确的函数名，以执行回调函数。
+"text": 返回纯文本字符串*/
+            async:true,/*默认true异步传输*/
+            type:"get",/*请求的类型：get(默认);post*/
             success:function (result) {/*通过回调函数处理返回的数据*/
                 //result={"flag":true}
                /* console.log(result);*/
@@ -91,8 +98,58 @@
                }else{
                    $("#result").text("用户名已用，重写输入新的用户名")
                }
-            }
+            },
+            error:function(){
+              console.log("发生错误")
+        }
         })
+/*
+*
+* 原生ajax
+* */
+
+//1：生成对象----XMLHttpRequest
+/*
+
+    var xmlhttprequest=new  XMLHttpRequest();
+
+
+    //3:处理
+       // 存储函数（或函数名），每当 readyState 属性改变时，就会调用该函数。
+        xmlhttprequest.onreadystatechange=function(){
+            /!**
+             * 存有 XMLHttpRequest 的状态。从 0 到 4 发生变化。
+             * 0: 请求未初始化1: 服务器连接已建立
+             * 2: 请求已接收
+             * 3: 请求处理中
+             * 4: 请求已完成，且响应已就绪
+             * *!/
+            console.log("readyState:"+xmlhttprequest.readyState)
+            if(xmlhttprequest.readyState==4){
+                //响应状态：200  404
+                console.log("status:"+xmlhttprequest.status)
+                if(xmlhttprequest.status==200){
+                    // 响应的数据：responseText ;responseXML
+                    console.log(xmlhttprequest.responseText)
+                }
+            }
+        }
+
+   //2：与服务器进行数据交换
+
+        /!**
+         * 规定请求的类型、URL 以及是否异步处理请求。
+         * method：请求的类型；GET 或 POST
+         * url：文件在服务器上的位置
+         * async：true（异步）或 false（同步）
+         *!/
+   xmlhttprequest.open("get","checkName.user?uname="+username,true);
+
+   xmlhttprequest.send();
+
+*/
+
+
 
 
 

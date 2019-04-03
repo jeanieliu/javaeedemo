@@ -58,8 +58,29 @@ public class CategoryServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         doPost(req, resp);
     }
+    public void cateall(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        List<Category> lists = categoryDAO.selectAll();
+        //[{"cid":1,"cname":"玫瑰"},{"cid":2,"cname":"月季"},{.....}]
 
-    public void list(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        StringBuffer sb=new StringBuffer();
+
+        sb.append("[");
+
+        int n=0;
+
+        for(Category c:lists){
+            n++;
+            if(n==lists.size()){
+                sb.append("{\"cid\":" + c.getCid() + ",\"cname\":\"" + c.getCname() + "\"}");
+            }else {
+                sb.append("{\"cid\":" + c.getCid() + ",\"cname\":\"" + c.getCname() + "\"},");
+            }
+        }
+        sb.append("]");
+        System.out.println(String.valueOf(sb));
+       resp.getWriter().print(String.valueOf(sb));
+    }
+        public void list(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         List<Category> lists = categoryDAO.selectAll();
         req.setAttribute("cates", lists);
         req.getRequestDispatcher("catelist.jsp").forward(req, resp);
