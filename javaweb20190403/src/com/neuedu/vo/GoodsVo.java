@@ -1,8 +1,8 @@
-package com.neuedu.entity;
+package com.neuedu.vo;
 
 import java.math.BigDecimal;
 
-public class Goods {
+public class GoodsVo {
     private Integer gid;
     private String gnum;
     private String gname;
@@ -10,14 +10,20 @@ public class Goods {
     private Integer gstock;
     private Integer gsell;
     private String gdesc;
-    private Integer cid;
+    private String cname;
 
-    public Integer getCid() {
-        return cid;
-    }
-
-    public void setCid(Integer cid) {
-        this.cid = cid;
+    @Override
+    public String toString() {
+        return "GoodsVo{" +
+                "gid=" + gid +
+                ", gnum='" + gnum + '\'' +
+                ", gname='" + gname + '\'' +
+                ", gprice=" + gprice +
+                ", gstock=" + gstock +
+                ", gsell=" + gsell +
+                ", gdesc='" + gdesc + '\'' +
+                ", cname='" + cname + '\'' +
+                '}';
     }
 
     public Integer getGid() {
@@ -74,5 +80,13 @@ public class Goods {
 
     public void setGdesc(String gdesc) {
         this.gdesc = gdesc;
+    }
+
+    public String getCname() {
+        return cname;
+    }
+
+    public void setCname(String cname) {
+        this.cname = cname;
     }
 }
