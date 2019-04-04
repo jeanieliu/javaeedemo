@@ -15,8 +15,10 @@ public class MyServlet04  extends HttpServlet{
         /**
          * 1：生成ServletContext对象
          *     1)this.getServletContext();
+         *     2) this.getServletConfig().getServletContext();
          */
         ServletContext context=this.getServletContext();
+
         context.setAttribute("contexttype","text/html;charset=utf-8");
        String charset= context.getInitParameter("charset");
 
